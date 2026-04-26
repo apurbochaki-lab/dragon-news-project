@@ -14,5 +14,5 @@ export const getNewsDetailsById = async (news_id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/${news_id}`);
     const data = await res.json();
     const newsData = data.data;
-    return newsData;
+    return newsData[0];
 }
