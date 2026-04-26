@@ -6,7 +6,7 @@ import NavLink from './NavLink';
 
 const Navbar = () => {
     return (
-        <div className='container mx-auto flex justify-between '>
+        <div className='container mx-auto flex justify-between py-5'>
             <div></div>
             <ul className='flex items-center gap-3 font-semibold'>
                 <li><NavLink href={'/'}>Home</NavLink></li>

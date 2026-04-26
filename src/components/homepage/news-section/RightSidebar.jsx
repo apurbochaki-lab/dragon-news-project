@@ -5,8 +5,8 @@ import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import swimming from '@/assets/swimming.png'
 import classImg from '@/assets/class.png'
 import playGround from '@/assets/playground.png'
-import Image from 'next/image';
 import bg from '@/assets/bg.png'
+import Image from 'next/image';
 
 const RightSidebar = () => {
     return (
