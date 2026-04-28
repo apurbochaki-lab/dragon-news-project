@@ -6,7 +6,7 @@ import { getCategories, getNewsCategoryById } from "@/lib/data";
 
 const NewsCategoryPage = async ({ params }) => {
     const { id } = await params;
-    console.log(id)
+    // console.log(id)
 
     const catagories = await getCategories()
     const news = await getNewsCategoryById(id)
