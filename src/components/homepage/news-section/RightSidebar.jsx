@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { AiFillTwitterCircle } from 'react-icons/ai';
 import { BsInstagram } from 'react-icons/bs';
@@ -7,15 +9,38 @@ import classImg from '@/assets/class.png'
 import playGround from '@/assets/playground.png'
 import bg from '@/assets/bg.png'
 import Image from 'next/image';
+import { authClient } from '@/lib/auth-client';
 
 const RightSidebar = () => {
+
+    const handleGoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google"
+        })
+    }
+
+    const handleGithubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        })
+    }
+
     return (
         <section>
             <div>
                 <h2 className='text-lg font-bold mb-4'>Login With</h2>
                 <div className='flex flex-col gap-3'>
-                    <button className="btn border-2 border-blue-500 rounded-lg text-blue-500"><FaGoogle /> Login with Google</button>
-                    <button className="btn border-2 border-green-500 rounded-lg text-green-600"><FaGithub />Login with Github</button>
+                    <button
+                        className="btn border-2 border-blue-500 rounded-lg text-blue-500"
+                        onClick={handleGoogleSignIn}
+                    ><FaGoogle /> Login with Google
+                    </button>
+
+                    <button
+                        className="btn border-2 border-green-500 rounded-lg text-green-600"
+                        onClick={handleGithubSignIn}
+                    ><FaGithub />Login with Github
+                    </button>
                 </div>
             </div>
 

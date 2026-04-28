@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 
 const LoginPage = () => {
     const [showPass, setShowPass] = useState(false)
-    console.log(showPass)
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm()
 
