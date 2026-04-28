@@ -1,13 +1,33 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
-    const handleRegisterFunc = (data) => {
-        console.log(data)
+    const handleRegisterFunc = async (data) => {
+        const { name, photo, email, password } = data;
+        // console.log(data)
+
+        const { data: userData, error } = await authClient.signUp.email({
+            email: email, // user email address
+            password: password, // user password -> min 8 characters by default
+            name: name, // user display name
+            image: photo, // User image URL (optional)
+            callbackURL: "/"
+        })
+
+        console.log(userData)
+
+        if (error) {
+            toast.error(error.message)
+        }
+        if (userData) {
+            toast.success(`${userData.user.name} successfully registered!`)
+        }
     }
 
     return (
@@ -29,15 +49,13 @@ const RegisterPage = () => {
                     </fieldset>
 
                     <fieldset className="fieldset">
-                        <legend className="fieldset-legend font-bold text-[16px]">Photo URL</legend>
+                        <legend className="fieldset-legend font-bold text-[16px]">Photo URL <span className="text-sm font-semibold text-gray-500">(Optional)</span></legend>
                         <input
                             type="text"
                             className="input bg-gray-100"
                             placeholder="Enter your photo url"
-                            {...register("photo", { required: "Photo URL is required!" })}
+                            {...register("photo")}
                         />
-
-                        {errors.photo && <p className="font-semibold text-red-500">{errors.photo.message}</p>}
                     </fieldset>
 
                     <fieldset className="fieldset">
